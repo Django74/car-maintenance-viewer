@@ -5,31 +5,33 @@ import { formatPrice } from "../helpers";
 class Car extends React.Component {
   static propTypes = {
     details: PropTypes.shape({
-      image: PropTypes.string,
-      name: PropTypes.string,
-      desc: PropTypes.string,
-      status: PropTypes.string,
-      price: PropTypes.number
+      type: PropTypes.string,
+      model: PropTypes.string,
+      make: PropTypes.string,
+      mileage: PropTypes.string,
+      year: PropTypes.number
     }),
     addToTask: PropTypes.func
   };
   render() {
-    const { image, name, price, desc, status } = this.props.details;
-    const isAvailable = status === "available";
+    const { type, model, year, make, mileage } = this.props.details;
     return (
       <li className="menu-car">
-        <img src={image} alt={name} />
+        {make}
         <h3 className="car-name">
-          {name}
-          <span className="price">{formatPrice(price)}</span>
+          {model}
+          <span className="price">{year}</span>
         </h3>
-        <p>{desc}</p>
+        <p>{type}</p>
+        <div className="mileage">
+          {mileage + " km"}
+        </div>
         <button
-          disabled={!isAvailable}
           onClick={() => this.props.addToTask(this.props.index)}
-        >
-          {isAvailable ? "Add To Task" : "Sold Out!"}
+        >Tasks
         </button>
+
+
       </li>
     );
   }
