@@ -5,27 +5,27 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 class Tasks extends React.Component {
   static propTypes = {
-    fishes: PropTypes.object,
-    order: PropTypes.object,
-    removeFromOrder: PropTypes.func
+    cars: PropTypes.object,
+    task: PropTypes.object,
+    removeFromTask: PropTypes.func
   };
-  renderOrder = key => {
-    const fish = this.props.fishes[key];
-    const count = this.props.order[key];
-    const isAvailable = fish && fish.status === "available";
+  renderTask = key => {
+    const car = this.props.cars[key];
+    const count = this.props.task[key];
+    const isAvailable = car && car.status === "available";
     const transitionOptions = {
-      classNames: "order",
+      classNames: "task",
       key,
       timeout: { enter: 500, exit: 500 }
     };
-    // Make sure the fish is loaded before we continue!
-    if (!fish) return null;
+    // Make sure the car is loaded before we continue!
+    if (!car) return null;
 
     if (!isAvailable) {
       return (
         <CSSTransition {...transitionOptions}>
           <li key={key}>
-            Sorry {fish ? fish.name : "fish"} is no longer available
+            Sorry {car ? car.name : "car"} is no longer available
           </li>
         </CSSTransition>
       );
@@ -43,9 +43,9 @@ class Tasks extends React.Component {
                 <span>{count}</span>
               </CSSTransition>
             </TransitionGroup>
-            lbs {fish.name}
-            {formatPrice(count * fish.price)}
-            <button onClick={() => this.props.removeFromOrder(key)}>
+            lbs {car.name}
+            {formatPrice(count * car.price)}
+            <button onClick={() => this.props.removeFromTask(key)}>
               &times;
             </button>
           </span>
@@ -54,21 +54,21 @@ class Tasks extends React.Component {
     );
   };
   render() {
-    const orderIds = Object.keys(this.props.order);
-    const total = orderIds.reduce((prevTotal, key) => {
-      const fish = this.props.fishes[key];
-      const count = this.props.order[key];
-      const isAvailable = fish && fish.status === "available";
+    const taskIds = Object.keys(this.props.task);
+    const total = taskIds.reduce((prevTotal, key) => {
+      const car = this.props.cars[key];
+      const count = this.props.task[key];
+      const isAvailable = car && car.status === "available";
       if (isAvailable) {
-        return prevTotal + count * fish.price;
+        return prevTotal + count * car.price;
       }
       return prevTotal;
     }, 0);
     return (
-      <div className="order-wrap">
-        <h2>Order</h2>
-        <TransitionGroup component="ul" className="order">
-          {orderIds.map(this.renderOrder)}
+      <div className="task-wrap">
+        <h2>Task</h2>
+        <TransitionGroup component="ul" className="task">
+          {taskIds.map(this.renderTask)}
         </TransitionGroup>
         <div className="total">
           Total:

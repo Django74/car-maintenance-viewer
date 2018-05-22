@@ -1,4 +1,4 @@
-.order-enter {
+.task-enter {
   -webkit-transform: translateX(-120%);
           transform: translateX(-120%);
   -webkit-transition: 0.5s;
@@ -6,19 +6,19 @@
   max-height: 0;
   padding: 0 !important;
 }
-.order-enter.order-enter-active {
+.task-enter.task-enter-active {
   max-height: 60px;
   -webkit-transform: translateX(0);
           transform: translateX(0);
   padding: 2rem 0 !important;
 }
-.order-exit {
+.task-exit {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   -webkit-transform: translateX(0);
           transform: translateX(0);
 }
-.order-exit.order-exit-active {
+.task-exit.task-exit-active {
   -webkit-transform: translateX(120%);
           transform: translateX(120%);
   padding: 0;
@@ -401,7 +401,7 @@ ul {
   margin: 0;
   padding: 0;
 }
-ul.order li {
+ul.task li {
   border-bottom: 1px solid #000;
   padding: 2rem 0;
   display: -webkit-box;
@@ -415,39 +415,39 @@ ul.order li {
       -ms-flex-align: center;
           align-items: center;
 }
-ul.order li:hover button {
+ul.task li:hover button {
   display: inline;
 }
-ul.order li button {
+ul.task li button {
   border: 0;
   display: none;
   line-height: 1;
   padding: 0;
 }
-ul.order li.total {
+ul.task li.total {
   font-weight: 600;
   border-bottom: 3px solid #000;
   border-top: 3px double #000;
 }
-ul.order li.unavailable {
+ul.task li.unavailable {
   text-decoration: line-through;
   background: #f8d0d2;
 }
-ul.order li .price {
+ul.task li .price {
   font-size: 1.2rem;
 }
-ul.order li span.count {
+ul.task li span.count {
   position: relative;
   overflow: hidden;
   float: left;
 }
-ul.order li span.count span {
+ul.task li span.count span {
   display: inline-block;
 }
-.order-title {
+.task-title {
   text-align: center;
 }
-.fish-edit {
+.car-edit {
   margin-bottom: 20px;
   border: 2px solid #000;
   overflow: hidden;
@@ -457,9 +457,9 @@ ul.order li span.count span {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
-.fish-edit input,
-.fish-edit textarea,
-.fish-edit select {
+.car-edit input,
+.car-edit textarea,
+.car-edit select {
   width: 33.33%;
   padding: 10px;
   line-height: 1;
@@ -473,23 +473,23 @@ ul.order li span.count span {
   border-radius: 0;
   background: #fff;
 }
-.fish-edit input:focus,
-.fish-edit textarea:focus,
-.fish-edit select:focus {
+.car-edit input:focus,
+.car-edit textarea:focus,
+.car-edit select:focus {
   outline: 0;
   background: #fef2de;
 }
-.fish-edit textarea {
+.car-edit textarea {
   width: 100%;
 }
-.fish-edit input:last-of-type {
+.car-edit input:last-of-type {
   width: 100%;
 }
-.fish-edit button {
+.car-edit button {
   width: 100%;
   border: 0;
 }
-.list-of-fish {
+.list-of-car {
   border-top: 2px solid #000;
   border-bottom: 1px solid #000;
   padding-top: 5px;
@@ -497,7 +497,7 @@ ul.order li span.count span {
   -webkit-transform: translateZ(0);
           transform: translateZ(0);
 }
-.menu-fish {
+.menu-car {
   border-bottom: 2px solid #000;
   border-top: 1px solid #000;
   padding-bottom: 2rem;
@@ -506,11 +506,11 @@ ul.order li span.count span {
   clear: both;
   overflow: hidden;
 }
-.menu-fish p {
+.menu-car p {
   margin: 0;
   font-size: 1.8rem;
 }
-.menu-fish .fish-name {
+.menu-car .car-name {
   margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -522,13 +522,13 @@ ul.order li span.count span {
       -ms-flex-align: center;
           align-items: center;
 }
-.menu-fish .price {
+.menu-car .price {
   font-size: 1.4rem;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
-.menu-fish img {
+.menu-car img {
   float: left;
   width: 150px;
   margin-right: 1rem;

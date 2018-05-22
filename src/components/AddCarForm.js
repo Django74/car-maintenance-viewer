@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-class AddFishForm extends React.Component {
+class AddCarForm extends React.Component {
   nameRef = React.createRef();
   priceRef = React.createRef();
   statusRef = React.createRef();
@@ -9,26 +9,26 @@ class AddFishForm extends React.Component {
   imageRef = React.createRef();
 
   static propTypes = {
-    addFish: PropTypes.func
+    addCar: PropTypes.func
   };
 
-  createFish = event => {
+  createCar = event => {
     // 1.  stop the form from submitting
     event.preventDefault();
-    const fish = {
+    const car = {
       name: this.nameRef.value.value,
       price: parseFloat(this.priceRef.value.value),
       status: this.statusRef.value.value,
       desc: this.descRef.value.value,
       image: this.imageRef.value.value
     };
-    this.props.addFish(fish);
+    this.props.addCar(car);
     // refresh the form
     event.currentTarget.reset();
   };
   render() {
     return (
-      <form className="fish-edit" onSubmit={this.createFish}>
+      <form className="car-edit" onSubmit={this.createCar}>
         <input name="name" ref={this.nameRef} type="text" placeholder="Name" />
         <input
           name="price"
@@ -48,10 +48,10 @@ class AddFishForm extends React.Component {
           type="text"
           placeholder="Image"
         />
-        <button type="submit">+ Add Fish</button>
+        <button type="submit">+ Add Car</button>
       </form>
     );
   }
 }
 
-export default AddFishForm;
+export default AddCarForm;

@@ -11,24 +11,24 @@ class Car extends React.Component {
       status: PropTypes.string,
       price: PropTypes.number
     }),
-    addToOrder: PropTypes.func
+    addToTask: PropTypes.func
   };
   render() {
     const { image, name, price, desc, status } = this.props.details;
     const isAvailable = status === "available";
     return (
-      <li className="menu-fish">
+      <li className="menu-car">
         <img src={image} alt={name} />
-        <h3 className="fish-name">
+        <h3 className="car-name">
           {name}
           <span className="price">{formatPrice(price)}</span>
         </h3>
         <p>{desc}</p>
         <button
           disabled={!isAvailable}
-          onClick={() => this.props.addToOrder(this.props.index)}
+          onClick={() => this.props.addToTask(this.props.index)}
         >
-          {isAvailable ? "Add To Order" : "Sold Out!"}
+          {isAvailable ? "Add To Task" : "Sold Out!"}
         </button>
       </li>
     );

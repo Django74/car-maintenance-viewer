@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AddFishForm from "./AddFishForm";
-import EditFishForm from "./EditFishForm";
+import AddCarForm from "./AddCarForm";
+import EditCarForm from "./EditCarForm";
 
 class Inventory extends React.Component {
   static propTypes = {
-    fishes: PropTypes.object,
-    updateFish: PropTypes.func,
-    deleteFish: PropTypes.func,
-    loadSampleFishes: PropTypes.func
+    cars: PropTypes.object,
+    updateCar: PropTypes.func,
+    deleteCar: PropTypes.func,
+    loadSampleCars: PropTypes.func
   };
 
   state = {
@@ -23,18 +23,18 @@ class Inventory extends React.Component {
     return (
       <div className="inventory">
         <h2>Inventory</h2>
-        {Object.keys(this.props.fishes).map(key => (
-          <EditFishForm
+        {Object.keys(this.props.cars).map(key => (
+          <EditCarForm
             key={key}
             index={key}
-            fish={this.props.fishes[key]}
-            updateFish={this.props.updateFish}
-            deleteFish={this.props.deleteFish}
+            car={this.props.cars[key]}
+            updateCar={this.props.updateCar}
+            deleteCar={this.props.deleteCar}
           />
         ))}
-        <AddFishForm addFish={this.props.addFish} />
-        <button onClick={this.props.loadSampleFishes}>
-          Load Sample Fishes
+        <AddCarForm addCar={this.props.addCar} />
+        <button onClick={this.props.loadSampleCars}>
+          Load Sample Cars
         </button>
       </div>
     );
