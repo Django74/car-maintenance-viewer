@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { formatPrice } from "../helpers";
 
 class Car extends React.Component {
   static propTypes = {
@@ -30,8 +29,6 @@ class Car extends React.Component {
           onClick={() => this.props.addToTask(this.props.index)}
         >Tire Rotation
         </button>
-
-
       </li>
     );
   }

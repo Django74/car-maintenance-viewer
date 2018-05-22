@@ -44,12 +44,6 @@ class EditCarForm extends React.Component {
           onChange={this.handleChange}
           value={this.props.car.year}
         />
-        <input
-          type="number"
-          name="mileage"
-          onChange={this.handleChange}
-          value={this.props.car.mileage}
-        />
         <select
           type="text"
           name="type"
@@ -60,8 +54,12 @@ class EditCarForm extends React.Component {
           <option value="Diesel">Diesel</option>
           <option value="Electric">Electric</option>
         </select>
-
-
+        <input
+          type="number"
+          name="mileage"
+          onChange={this.handleChange}
+          value={this.props.car.mileage}
+        />
         <button onClick={() => this.props.deleteCar(this.props.index)}>
           Remove Car
         </button>

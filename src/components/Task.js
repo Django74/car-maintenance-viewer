@@ -55,25 +55,12 @@ class Tasks extends React.Component {
   };
   render() {
     const taskIds = Object.keys(this.props.task);
-    const total = taskIds.reduce((prevTotal, key) => {
-      const car = this.props.cars[key];
-      const count = this.props.task[key];
-      const isAvailable = car && car.status === "available";
-      if (isAvailable) {
-        return prevTotal + count * car.price;
-      }
-      return prevTotal;
-    }, 0);
     return (
       <div className="task-wrap">
         <h2>Maintenance Done</h2>
         <TransitionGroup component="ul" className="task">
           {taskIds.map(this.renderTask)}
         </TransitionGroup>
-        <div className="total">
-          Total:
-          <strong>{formatPrice(total)}</strong>
-        </div>
       </div>
     );
   }
