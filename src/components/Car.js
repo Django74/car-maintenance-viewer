@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class Car extends React.Component {
   static propTypes = {
@@ -8,28 +8,41 @@ class Car extends React.Component {
       model: PropTypes.string,
       make: PropTypes.string,
       mileage: PropTypes.string,
-      year: PropTypes.number
+      year: PropTypes.number,
     }),
-    addToTask: PropTypes.func
+    addToTask: PropTypes.func,
   };
+
   render() {
-    const { type, model, year, make, mileage } = this.props.details;
+    const {type, model, year, make, mileage} = this.props.details;
+    let maintenanceTasks;
+    const tasksArray = this.props.availableTasks[this.props.index];
+    if (Object.keys(this.props.availableTasks).length > 0 && tasksArray) {
+      maintenanceTasks = tasksArray.map(
+          elem =>
+              <button
+                  onClick={() => this.props.addToTask(this.props.index)}
+              >
+                {elem.Name}
+              </button>,
+      );
+    } else {
+      maintenanceTasks = null;
+    }
+
     return (
-      <li className="menu-car">
-        {make}
-        <h3 className="car-name">
-          {model}
-          <span className="price">{year}</span>
-        </h3>
-        <p>{type}</p>
-        <div className="mileage">
-          {mileage + " km"}
-        </div>
-        <button
-          onClick={() => this.props.addToTask(this.props.index)}
-        >Tire Rotation
-        </button>
-      </li>
+        <li className="menu-car">
+          {make}
+          <h3 className="car-name">
+            {model}
+            <span className="price">{year}</span>
+          </h3>
+          <p>{type}</p>
+          <div className="mileage">
+            {mileage + ' km'}
+          </div>
+          {maintenanceTasks}
+        </li>
     );
   }
 }

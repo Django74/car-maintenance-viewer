@@ -11,14 +11,6 @@ class Inventory extends React.Component {
     loadSampleCars: PropTypes.func
   };
 
-  state = {
-    uid: null,
-    owner: null
-  };
-
-  componentDidMount() {
-  }
-
   render() {
     return (
       <div className="inventory">

@@ -11,6 +11,7 @@ class App extends React.Component {
     cars: {},
     task: {},
     isChanged: false,
+    availableTasks: {}
   };
 
   static propTypes = {
@@ -27,8 +28,23 @@ class App extends React.Component {
           carsObj[cars[i].id] = cars[i];
         }
         this.setState({cars: carsObj});
-      })
+        this.getTasksAvailable(carsObj);
+      });
   }
+
+  getTasksAvailable = cars => {
+    for (let car in cars) {
+      axios.get('https://cartracker-django74.herokuapp.com/tasks/' + cars[car].type)
+          .then(res => {
+            this.setState({
+                availableTasks: {
+                  ...this.state.availableTasks,
+                  [car]: res.data,
+                }
+            })
+      });
+    }
+  };
 
   componentDidUpdate() {
   }
@@ -122,6 +138,7 @@ class App extends React.Component {
                 index={key}
                 details={this.state.cars[key]}
                 addToTask={this.addToTask}
+                availableTasks={this.state.availableTasks}
               />
             ))}
           </ul>
