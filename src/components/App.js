@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Header from "./Header";
 import Tasks from "./Task";
 import Inventory from "./Inventory";
-import sampleCars from "../sample-cars";
 import Car from "./Car";
 import axios from "axios";
 

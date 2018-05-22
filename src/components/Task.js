@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { formatPrice } from "../helpers";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 class Tasks extends React.Component {
@@ -43,8 +42,6 @@ class Tasks extends React.Component {
                 <span>{count}</span>
               </CSSTransition>
             </TransitionGroup>
-            lbs {car.name}
-            {formatPrice(count * car.price)}
             <button onClick={() => this.props.removeFromTask(key)}>
               &times;
             </button>
