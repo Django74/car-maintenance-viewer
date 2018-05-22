@@ -33,7 +33,10 @@ class Inventory extends React.Component {
           />
         ))}
         <AddCarForm addCar={this.props.addCar} />
-        <button onClick={this.props.loadSampleCars}>
+        <button
+          onClick={this.props.saveEdits}
+          disabled={!this.props.isChanged}
+        >
           Save Edits
         </button>
       </div>

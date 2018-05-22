@@ -10,7 +10,8 @@ import axios from "axios";
 class App extends React.Component {
   state = {
     cars: {},
-    task: {}
+    task: {},
+    isChanged: false,
   };
 
   static propTypes = {
@@ -56,7 +57,14 @@ class App extends React.Component {
     // 2. Update that state
     cars[key] = updatedCar;
     // 3. Set that to state
-    this.setState({ cars });
+    this.setState({
+      cars,
+      isChanged: true,
+      carsToPut: {
+        ...this.state.carsToPut,
+        [key]: updatedCar
+      }
+    });
   };
 
   deleteCar = key => {
@@ -73,8 +81,16 @@ class App extends React.Component {
          });
   };
 
-  loadSampleCars = () => {
-    this.setState({ cars: sampleCars });
+  saveEdits = () => {
+    const cars = this.state.carsToPut;
+    // PUT all updated car info
+    for(let car in cars) {
+      axios.put('https://cartracker-django74.herokuapp.com/cars/' + car, cars[car])
+           .then(res => {
+             console.log(res);
+           });
+    }
+    this.setState({ isChanged: false, carsToPut: {}});
   };
 
   addToTask = key => {
@@ -120,8 +136,9 @@ class App extends React.Component {
           addCar={this.addCar}
           updateCar={this.updateCar}
           deleteCar={this.deleteCar}
-          loadSampleCars={this.loadSampleCars}
+          saveEdits={this.saveEdits}
           cars={this.state.cars}
+          isChanged={this.state.isChanged}
         />
       </div>
     );

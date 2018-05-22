@@ -545,7 +545,6 @@ input[type=submit] {
   position: relative;
   z-index: 2;
 }
-button[disabled],
 input[type=submit][disabled] {
   color: #d12028;
   background: #fff;
@@ -553,12 +552,10 @@ input[type=submit][disabled] {
   -webkit-transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
           transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
 }
-button[disabled]:hover,
 input[type=submit][disabled]:hover {
   color: #d12028;
   cursor: not-allowed;
 }
-button[disabled]:after,
 input[type=submit][disabled]:after {
   display: none;
 }

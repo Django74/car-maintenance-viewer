@@ -19,7 +19,7 @@ class EditCarForm extends React.Component {
     // 1. Take a copy of the curernt car
     const updatedCar = {
       ...this.props.car,
-      [event.currentTarget.model]: event.currentTarget.value
+      [event.currentTarget.name]: event.currentTarget.value
     };
     this.props.updateCar(this.props.index, updatedCar);
   };
@@ -28,15 +28,15 @@ class EditCarForm extends React.Component {
       <div className="car-edit">
         <input
           type="text"
-          name="model"
-          onChange={this.handleChange}
-          value={this.props.car.model}
-        />
-        <input
-          type="text"
           name="make"
           onChange={this.handleChange}
           value={this.props.car.make}
+        />
+        <input
+          type="text"
+          name="model"
+          onChange={this.handleChange}
+          value={this.props.car.model}
         />
         <input
           type="number"
