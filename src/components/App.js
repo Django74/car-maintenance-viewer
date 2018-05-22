@@ -5,6 +5,7 @@ import Tasks from "./Task";
 import Inventory from "./Inventory";
 import sampleCars from "../sample-cars";
 import Car from "./Car";
+import axios from "axios";
 
 class App extends React.Component {
   state = {
@@ -17,6 +18,16 @@ class App extends React.Component {
   };
 
   componentDidMount() {
+    axios.get('https://cartracker-django74.herokuapp.com/cars')
+      .then(res => {
+        const cars = res.data;
+        console.log(cars);
+        let carsObj = {};
+        for (let i = 0; i < cars.length; i++) {
+          carsObj[cars[i].id] = cars[i];
+        }
+        this.setState({cars: carsObj});
+      })
   }
 
   componentDidUpdate() {

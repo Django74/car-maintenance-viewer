@@ -44,8 +44,9 @@ class EditCarForm extends React.Component {
           onChange={this.handleChange}
           value={this.props.car.type}
         >
-          <option value="available">Fresh!</option>
-          <option value="unavailable">Sold Out!</option>
+          <option value="Gas">Gas</option>
+          <option value="Diesel">Diesel</option>
+          <option value="Electric">Electric</option>
         </select>
         <input
           type="text"

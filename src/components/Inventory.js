@@ -34,7 +34,7 @@ class Inventory extends React.Component {
         ))}
         <AddCarForm addCar={this.props.addCar} />
         <button onClick={this.props.loadSampleCars}>
-          Load Sample Cars
+          Save Edits
         </button>
       </div>
     );
