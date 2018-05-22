@@ -8,50 +8,32 @@ class Tasks extends React.Component {
     task: PropTypes.object,
     removeFromTask: PropTypes.func
   };
-  renderTask = key => {
-    const car = this.props.cars[key];
-    const count = this.props.task[key];
-    const isAvailable = car && car.status === "available";
+  renderTask = elem => {
+    // const car = this.props.cars[key];
+    // const count = this.props.task[key];
     const transitionOptions = {
       classNames: "task",
-      key,
       timeout: { enter: 500, exit: 500 }
     };
-    // Make sure the car is loaded before we continue!
-    if (!car) return null;
-
-    if (!isAvailable) {
-      return (
-        <CSSTransition {...transitionOptions}>
-          <li key={key}>
-            Sorry {car ? car.name : "car"} is no longer available
-          </li>
-        </CSSTransition>
-      );
-    }
     return (
       <CSSTransition {...transitionOptions}>
-        <li key={key}>
+        <li >
           <span>
             <TransitionGroup component="span" className="count">
               <CSSTransition
                 classNames="count"
-                key={count}
                 timeout={{ enter: 500, exit: 500 }}
               >
-                <span>{count}</span>
+                <span>{elem}</span>
               </CSSTransition>
             </TransitionGroup>
-            <button onClick={() => this.props.removeFromTask(key)}>
-              &times;
-            </button>
           </span>
         </li>
       </CSSTransition>
     );
   };
   render() {
-    const taskIds = Object.keys(this.props.task);
+    const taskIds = this.props.task;
     return (
       <div className="task-wrap">
         <h2>Maintenance Done</h2>

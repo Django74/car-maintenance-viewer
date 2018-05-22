@@ -21,7 +21,7 @@ class Car extends React.Component {
       maintenanceTasks = tasksArray.map(
           elem =>
               <button
-                  onClick={() => this.props.addToTask(this.props.index)}
+                  onClick={() => this.props.addToTask(this.props.index, elem.Name)}
               >
                 {elem.Name}
               </button>,

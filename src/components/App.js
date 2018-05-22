@@ -9,7 +9,7 @@ import axios from "axios";
 class App extends React.Component {
   state = {
     cars: {},
-    task: {},
+    task: [],
     isChanged: false,
     availableTasks: {}
   };
@@ -19,38 +19,42 @@ class App extends React.Component {
   };
 
   componentDidMount() {
+    this.getCars();
+  }
+
+
+  componentDidUpdate(prevProps, prevState) {
+    if (Object.keys(this.state.cars).length > Object.keys(prevState.cars).length) {
+      this.getTasksAvailable(this.state.cars);
+    }
+  }
+
+  getCars() {
     axios.get('https://cartracker-django74.herokuapp.com/cars')
-      .then(res => {
-        const cars = res.data;
-        console.log(cars);
-        let carsObj = {};
-        for (let i = 0; i < cars.length; i++) {
-          carsObj[cars[i].id] = cars[i];
-        }
-        this.setState({cars: carsObj});
-        this.getTasksAvailable(carsObj);
-      });
+          .then(res => {
+      const cars = res.data;
+      let carsObj = {};
+      for (let i = 0; i < cars.length; i++) {
+        carsObj[cars[i].id] = cars[i];
+      }
+      this.setState({cars: carsObj});
+      this.getTasksAvailable(carsObj);
+    });
   }
 
   getTasksAvailable = cars => {
     for (let car in cars) {
       axios.get('https://cartracker-django74.herokuapp.com/tasks/' + cars[car].type)
-          .then(res => {
-            this.setState({
-                availableTasks: {
-                  ...this.state.availableTasks,
-                  [car]: res.data,
-                }
-            })
+            .then(res => {
+        this.setState({
+          availableTasks: {
+            ...this.state.availableTasks,
+            [car]: res.data,
+          }
+        })
       });
     }
   };
-
-  componentDidUpdate() {
-  }
-
-  componentWillUnmount() {
-  }
 
   addCar = car => {
     // 1. Take a copy of the existing state
@@ -108,13 +112,10 @@ class App extends React.Component {
     this.setState({ isChanged: false, carsToPut: {}});
   };
 
-  addToTask = key => {
-    // 1. take a copy of state
-    const task = { ...this.state.task };
-    // 2. Either add to the task, or update the number in our task
-    task[key] = task[key] + 1 || 1;
-    // 3. Call setState to update our state object
-    this.setState({ task });
+  addToTask = (key, taskName) => {
+    this.setState({
+      task: [...this.state.task, `CAR-#${key} ${taskName}`]
+    });
   };
 
   removeFromTask = key => {
