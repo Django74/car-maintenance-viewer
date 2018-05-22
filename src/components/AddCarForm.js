@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 class AddCarForm extends React.Component {
-  nameRef = React.createRef();
-  priceRef = React.createRef();
-  statusRef = React.createRef();
-  descRef = React.createRef();
-  imageRef = React.createRef();
+  modelRef = React.createRef();
+  yearRef = React.createRef();
+  mileageRef = React.createRef();
+  makeRef = React.createRef();
+  typeRef = React.createRef();
 
   static propTypes = {
     addCar: PropTypes.func
@@ -16,37 +16,50 @@ class AddCarForm extends React.Component {
     // 1.  stop the form from submitting
     event.preventDefault();
     const car = {
-      name: this.nameRef.value.value,
-      price: parseFloat(this.priceRef.value.value),
-      status: this.statusRef.value.value,
-      desc: this.descRef.value.value,
-      image: this.imageRef.value.value
+      name: this.modelRef.value.value,
+      year: this.yearRef.value.value,
+      mileage: this.mileageRef.value.value,
+      make: this.makeRef.value.value,
+      type: this.typeRef.value.value
     };
     this.props.addCar(car);
     // refresh the form
     event.currentTarget.reset();
   };
+
   render() {
     return (
       <form className="car-edit" onSubmit={this.createCar}>
-        <input name="name" ref={this.nameRef} type="text" placeholder="Name" />
         <input
-          name="price"
-          ref={this.priceRef}
+          name="model"
+          ref={this.modelRef}
           type="text"
-          placeholder="Price"
+          placeholder="Model"
         />
-        <select name="status" ref={this.statusRef}>
-          <option value="available">Fresh!</option>
-          <option value="unavailable">Sold Out!</option>
+        <input
+          name="year"
+          ref={this.yearRef}
+          type="number"
+          placeholder="Year"
+        />
+        <select name="type" ref={this.typeRef}>
+          <option selected="selected">Choose Car Type</option>
+          <option value="Gas">Gas</option>
+          <option value="Diesel">Diesel</option>
+          <option value="Electric">Electric</option>
         </select>
 
-        <textarea name="desc" ref={this.descRef} placeholder="Desc" />
         <input
-          name="image"
-          ref={this.imageRef}
+          name="make"
+          ref={this.makeRef}
           type="text"
-          placeholder="Image"
+          placeholder="Make"
+        />
+        <input
+          name="mileage"
+          ref={this.mileageRef}
+          type="number"
+          placeholder="Mileage"
         />
         <button type="submit">+ Add Car</button>
       </form>

@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 class EditCarForm extends React.Component {
   static propTypes = {
     car: PropTypes.shape({
-      image: PropTypes.string,
-      name: PropTypes.string,
-      desc: PropTypes.string,
-      status: PropTypes.string,
-      price: PropTypes.number
+      type: PropTypes.string,
+      model: PropTypes.string,
+      make: PropTypes.string,
+      mileage: PropTypes.string,
+      year: PropTypes.number
     }),
     index: PropTypes.string,
     updateCar: PropTypes.func
@@ -19,7 +19,7 @@ class EditCarForm extends React.Component {
     // 1. Take a copy of the curernt car
     const updatedCar = {
       ...this.props.car,
-      [event.currentTarget.name]: event.currentTarget.value
+      [event.currentTarget.model]: event.currentTarget.value
     };
     this.props.updateCar(this.props.index, updatedCar);
   };
@@ -28,35 +28,36 @@ class EditCarForm extends React.Component {
       <div className="car-edit">
         <input
           type="text"
-          name="name"
+          name="model"
           onChange={this.handleChange}
-          value={this.props.car.name}
+          value={this.props.car.model}
         />
         <input
-          type="text"
-          name="price"
+          type="number"
+          name="year"
           onChange={this.handleChange}
-          value={this.props.car.price}
+          value={this.props.car.year}
         />
         <select
           type="text"
-          name="status"
+          name="type"
           onChange={this.handleChange}
-          value={this.props.car.status}
+          value={this.props.car.type}
         >
           <option value="available">Fresh!</option>
           <option value="unavailable">Sold Out!</option>
         </select>
-        <textarea
-          name="desc"
-          onChange={this.handleChange}
-          value={this.props.car.desc}
-        />
         <input
           type="text"
-          name="image"
+          name="make"
           onChange={this.handleChange}
-          value={this.props.car.image}
+          value={this.props.car.make}
+        />
+        <input
+          type="number"
+          name="mileage"
+          onChange={this.handleChange}
+          value={this.props.car.mileage}
         />
         <button onClick={() => this.props.deleteCar(this.props.index)}>
           Remove Car

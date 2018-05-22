@@ -4,12 +4,11 @@ import PropTypes from "prop-types";
 const Header = props => (
   <header className="top">
     <h1>
-      Catch
+      Car
       <span className="ofThe">
-        <span className="of">Of</span>
-        <span className="the">The</span>
+        <span className="of">Maintenance</span>
       </span>
-      Day
+      Viewer
     </h1>
     <h3 className="tagline">
       <span>{props.tagline}</span>
