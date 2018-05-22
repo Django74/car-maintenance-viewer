@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Header from "./Header";
-import Order from "./Order";
+import Tasks from "./Task";
 import Inventory from "./Inventory";
 import sampleFishes from "../sample-fishes";
-import Fish from "./Fish";
+import Car from "./Car";
 
 class App extends React.Component {
   state = {
@@ -81,7 +81,7 @@ class App extends React.Component {
           <Header tagline="Car Tracker" />
           <ul className="fishes">
             {Object.keys(this.state.fishes).map(key => (
-              <Fish
+              <Car
                 key={key}
                 index={key}
                 details={this.state.fishes[key]}
@@ -90,7 +90,7 @@ class App extends React.Component {
             ))}
           </ul>
         </div>
-        <Order
+        <Tasks
           fishes={this.state.fishes}
           order={this.state.order}
           removeFromOrder={this.removeFromOrder}
