@@ -66,7 +66,7 @@ class Tasks extends React.Component {
     }, 0);
     return (
       <div className="task-wrap">
-        <h2>Task</h2>
+        <h2>Maintenance Done</h2>
         <TransitionGroup component="ul" className="task">
           {taskIds.map(this.renderTask)}
         </TransitionGroup>

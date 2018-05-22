@@ -16,7 +16,7 @@ class AddCarForm extends React.Component {
     // 1.  stop the form from submitting
     event.preventDefault();
     const car = {
-      name: this.modelRef.value.value,
+      model: this.modelRef.value.value,
       year: this.yearRef.value.value,
       mileage: this.mileageRef.value.value,
       make: this.makeRef.value.value,
@@ -30,6 +30,12 @@ class AddCarForm extends React.Component {
   render() {
     return (
       <form className="car-edit" onSubmit={this.createCar}>
+        <input
+          name="make"
+          ref={this.makeRef}
+          type="text"
+          placeholder="Make"
+        />
         <input
           name="model"
           ref={this.modelRef}
@@ -48,13 +54,6 @@ class AddCarForm extends React.Component {
           <option value="Diesel">Diesel</option>
           <option value="Electric">Electric</option>
         </select>
-
-        <input
-          name="make"
-          ref={this.makeRef}
-          type="text"
-          placeholder="Make"
-        />
         <input
           name="mileage"
           ref={this.mileageRef}

@@ -43,6 +43,11 @@ class App extends React.Component {
     cars[`car${Date.now()}`] = car;
     // 3. Set the new cars object to state
     this.setState({ cars });
+    // ADD request to add to database
+    axios.post('https://cartracker-django74.herokuapp.com/cars', car)
+         .then(res => {
+           console.log(res);
+         });
   };
 
   updateCar = (key, updatedCar) => {
