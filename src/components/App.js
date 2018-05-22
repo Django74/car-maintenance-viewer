@@ -58,9 +58,14 @@ class App extends React.Component {
     // 1. take a copy of state
     const cars = { ...this.state.cars };
     // 2. update the state
-    cars[key] = null;
+    delete cars[key];
     // 3.  update state
     this.setState({ cars });
+    // DELETE request to update database
+    axios.delete('https://cartracker-django74.herokuapp.com/cars/' + key)
+         .then(res => {
+           console.log(res);
+         });
   };
 
   loadSampleCars = () => {
